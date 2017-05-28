@@ -2,5 +2,16 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>qtquickcontrols2.conf</file>
+        <file>Itinerarios.qml</file>
+        <file>Especies.qml</file>
+        <file>Habitat.qml</file>
+        <file>Zonas.qml</file>
+        <file>Guias.qml</file>
+        <file>Empleados.qml</file>
+        <file>Recorridos.qml</file>
+        <file>BotonMenu.qml</file>
+        <file>BotonMenuImagen.qml</file>
+        <file>Login.qml</file>
+        <file>Buscador.qml</file>
     </qresource>
 </RCC>
