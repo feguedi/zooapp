@@ -3,8 +3,6 @@ import QtQuick.Controls 2.1
 
 Button {
     id: boton
-    height: 25
-    width: height
     contentItem: Image {
         source: "images/plus.png"
         fillMode: Image.PreserveAspectFit

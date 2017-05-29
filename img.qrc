@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/back.png</file>
+        <file>images/edit.png</file>
+        <file>images/error.png</file>
+        <file>images/exit-1.png</file>
+        <file>images/map.png</file>
+        <file>images/menu-2.png</file>
+        <file>images/minus.png</file>
+        <file>images/more-1.png</file>
+        <file>images/plus.png</file>
+        <file>images/success.png</file>
+        <file>images/user-2.png</file>
+        <file>images/user-3.png</file>
+        <file>images/users-1.png</file>
+        <file>images/safari/012-rhinoceros.png</file>
+        <file>images/safari/022-tree.png</file>
+        <file>images/calendar-5.png</file>
+    </qresource>
+</RCC>

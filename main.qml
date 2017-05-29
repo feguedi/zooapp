@@ -1,67 +1,64 @@
 import QtQuick 2.7
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
-import QtQuick.Controls.Material 2.1
-import QtGraphicalEffects 1.0
 
 ApplicationWindow {
     id: window
     visible: true
-    width: 640
-    height: 480
+    height: 720
+    width: 480
     title: qsTr("ZooApp")
 
     property bool logueado: false
-    property string especies
-    property string habitat
-    property string zonas
-    property date itinerarios
-    property string guias
     property alias depth: stackView.depth
 
     header: ToolBar {
-        Material.foreground: "white"
+        id: toolBar
         visible: logueado
+        height: 35
 
         RowLayout {
-            spacing: 20
             anchors.fill: parent
+            spacing: 20
+            Layout.fillWidth: true
 
             ToolButton {
                 id: botonMenu
-                Layout.fillHeight: true
+                height: toolBar.height
                 width: height
                 flat: true
                 contentItem: Image {
+                    height: toolBar.height - 3
+                    width: height
                     source: "images/menu-2.png"
-                    sourceSize: Qt.size(parent.width, parent.height)
+                    fillMode: Image.Pad
                 }
+                onClicked: drawer.open()
 
-                onClicked: {
-                    if(stackView.depth > 1)
-                    {
-                        stackView.pop()
-                        listViewDrawer.currentIndex = -1
-                    }
-                    else
-                    {
-                        drawer.open()
-                    }
-                }
             }
 
             Label {
                 id: tituloLabel
-                text: listViewDrawer.currentItem ? listViewDrawer.currentItem.text : "ZooApp"
+                anchors.left: botonMenu.right
+                anchors.right: botonOpciones.left
+                //text: listViewDrawer.currentItem ? listViewDrawer.currentItem.text : "ZooApp"
+                text: "ZooApp"
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 font.pixelSize: 20
                 elide: Label.ElideRight
                 horizontalAlignment: Qt.AlignHCenter
                 verticalAlignment: Qt.AlignVCenter
-                Layout.fillWidth: true
             }
 
             ToolButton{
+                id: botonOpciones
+                Layout.fillHeight: true
+                anchors.right: parent.right
                 contentItem: Image {
+                    height: toolBar.height - 3
+                    width: height
                     fillMode: Image.Pad
                     horizontalAlignment: Image.AlignHCenter
                     verticalAlignment: Image.AlignVCenter
@@ -73,6 +70,23 @@ ApplicationWindow {
                     id: menuOpciones
                     x: parent.width - width
                     transformOrigin: Menu.TopRight
+
+                    MenuItem {
+                        id: datosUsuario
+                        text: qsTr("Datos")
+                        onClicked: {
+                            stackView.push(empleadosInfoForm)
+                        }
+                    }
+
+                    MenuItem {
+                        id: salir
+                        text: qsTr("Salir")
+                        onClicked: {
+                            stackView.pop(loginForm)
+                            logueado = !logueado
+                        }
+                    }
                 }
             }
         }
@@ -81,6 +95,7 @@ ApplicationWindow {
     StackView {
         id: stackView
         anchors.fill: parent
+        initialItem: loginForm
 
         Login {
             id: loginForm
@@ -93,85 +108,102 @@ ApplicationWindow {
                 }
             }
         }
+    }
 
+    Component {
+        id: zonasForm
         Zonas {
-            id: zonasForm
+            anchors.fill: parent
+            btnMapa.onClicked: {
+
+            }
+            btnItinerario.onClicked: { stackView.push(itinerariosForm) }
+        }
+    }
+
+    Component {
+        id: especiesInfoForm
+        EspeciesInfo {
             anchors.fill: parent
         }
+    }
 
+    Component {
+        id: itinerariosForm
         Itinerarios {
-            id: itinerariosForm
             anchors.fill: parent
         }
+    }
 
+    Component {
+        id: itinerariosInfoForm
+        ItinerariosInfo {
+            anchors.fill: parent
+        }
+    }
+
+    Component {
+        id: empleadosForm
         Empleados {
-            id: empleadosForm
             anchors.fill: parent
         }
+    }
 
+    Component {
+        id: empleadosInfoForm
+        EmpleadosInfo {
+            anchors.fill: parent
+        }
+    }
+
+    Component {
+        id: habitatForm
         Habitat {
-            id: habitatForm
             anchors.fill: parent
         }
+    }
 
+    Component {
+        id: guiasForm
         Guias {
-            id: guiasForm
             anchors.fill: parent
         }
+    }
 
+    Component {
+        id: especiesForm
         Especies {
-            id: especiesForm
             anchors.fill: parent
         }
+    }
 
+    Component {
+        id: recorridosForm
         Recorridos {
-            id: recorridosForm
             anchors.fill: parent
-        }
-
-        Blend {
-            anchors.fill: loginForm
-            source: loginForm
-            foregroundSource: zonasForm
-            mode: "substract"
         }
     }
 
     Drawer {
         id: drawer
-        width: Math.min(window.width, window.height) / 3 * 2
+        width: Math.min(window.width, window.height) / 3
         height: window.height
         dragMargin: stackView.depth > 1 ? 0 : undefined
 
-        ListView {
+        ListViewDrawer {
             id: listViewDrawer
-            focus: true
-            currentIndex: -1
             anchors.fill: parent
-
-            delegate: ItemDelegate {
-                width: parent.width
-                height: parent.height / 7
-                text: model.title
-                highlighted: ListView.isCurrentItem
-                onClicked: {
-                    listViewDrawer.currentIndex = index
-                    stackView.push(model.source)
-                    drawer.close()
-                }
-            }
-
-            model: ListModel {
-                ListElement { title: "Itinerarios"; source: "Itinerarios.qml" }
-                ListElement { title: "Recorridos"; source: "Recorridos.qml" }
-                ListElement { title: "Especies"; source: "Especies.qml" }
-                ListElement { title: "Hábitat"; source: "Habitat.qml" }
-                ListElement { title: "Guías"; source: "Guias.qml" }
-                ListElement { title: "Zonas"; source: "Zonas.qml" }
-                ListElement { title: "Empleados"; source: "Empleados.qml" }
-            }
-
-            ScrollIndicator.vertical: ScrollIndicator { }
+            especies.onClicked: { stackView.push(especiesForm) }
+            habitat.onClicked: { stackView.push(habitatForm) }
+            zonas.onClicked: { stackView.push(zonasForm) }
+            empleados.onClicked: { stackView.push(empleadosForm) }
         }
+    }
+
+    Component.onCompleted: {
+        console.log("Estado actual: " + stackView.currentItem)
+        console.log("Tamaño del drawer: " + drawer.width)
+        console.log("Tamaño del listView: " + listViewDrawer.width)
+        console.log("Tamaño del título: " + tituloLabel.height)
     }
 }

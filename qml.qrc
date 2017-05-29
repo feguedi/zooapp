@@ -16,5 +16,10 @@
         <file>Login.qml</file>
         <file>BotonModificar.qml</file>
         <file>BotonEliminar.qml</file>
+        <file>EmpleadosInfo.qml</file>
+        <file>ListViewDrawer.qml</file>
+        <file>ItinerariosInfo.qml</file>
+        <file>GuiasInfo.qml</file>
+        <file>EspeciesInfo.qml</file>
     </qresource>
 </RCC>
