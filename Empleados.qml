@@ -27,6 +27,8 @@ Page {
             Label {
                 id: labelNombre
                 text: qsTr("Nombre: ")
+                font.pointSize: 14
+                font.bold: true
                 Layout.preferredHeight: 28
                 Layout.preferredWidth: 144
                 horizontalAlignment: Text.AlignRight
@@ -47,6 +49,8 @@ Page {
             Label {
                 id: labelPuesto
                 text: qsTr("Puesto: ")
+                font.pointSize: 14
+                font.bold: true
                 Layout.preferredHeight: 28
                 Layout.preferredWidth: 144
                 horizontalAlignment: Text.AlignRight
@@ -66,6 +70,8 @@ Page {
             Label {
                 id: labelNoEmpleado
                 text: qsTr("No. empleado: ")
+                font.pointSize: 14
+                font.bold: true
                 Layout.preferredHeight: 28
                 Layout.preferredWidth: 144
                 verticalAlignment: Text.AlignVCenter
@@ -85,6 +91,8 @@ Page {
             Label {
                 id: labelZooAsignado
                 text: qsTr("Zoológico asignado: ")
+                font.pointSize: 14
+                font.bold: true
                 Layout.preferredHeight: 28
                 Layout.preferredWidth: 144
                 horizontalAlignment: Text.AlignRight
@@ -104,6 +112,8 @@ Page {
             Label {
                 id: labelArea
                 text: qsTr("Área: ")
+                font.pointSize: 14
+                font.bold: true
                 Layout.preferredHeight: 28
                 Layout.preferredWidth: 144
                 horizontalAlignment: Text.AlignRight
@@ -123,6 +133,8 @@ Page {
             Label {
                 id: labelTelefono
                 text: qsTr("Teléfono de Contacto: ")
+                font.pointSize: 14
+                font.bold: true
                 Layout.preferredHeight: 28
                 Layout.preferredWidth: 144
                 horizontalAlignment: Text.AlignRight
@@ -142,6 +154,8 @@ Page {
             Label {
                 id: labelEMail
                 text: qsTr("Correo electrónico: ")
+                font.pointSize: 14
+                font.bold: true
                 Layout.preferredHeight: 28
                 Layout.preferredWidth: 144
                 horizontalAlignment: Text.AlignRight

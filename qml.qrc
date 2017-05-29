@@ -11,7 +11,10 @@
         <file>Recorridos.qml</file>
         <file>BotonMenu.qml</file>
         <file>BotonMenuImagen.qml</file>
-        <file>Login.qml</file>
         <file>Buscador.qml</file>
+        <file>BotonAgregar.qml</file>
+        <file>Login.qml</file>
+        <file>BotonModificar.qml</file>
+        <file>BotonEliminar.qml</file>
     </qresource>
 </RCC>

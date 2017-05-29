@@ -2,6 +2,7 @@ import QtQuick 2.7
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
 import QtQuick.Controls.Material 2.1
+import QtGraphicalEffects 1.0
 
 ApplicationWindow {
     id: window
@@ -10,6 +11,7 @@ ApplicationWindow {
     height: 480
     title: qsTr("ZooApp")
 
+    property bool logueado: false
     property string especies
     property string habitat
     property string zonas
@@ -19,15 +21,21 @@ ApplicationWindow {
 
     header: ToolBar {
         Material.foreground: "white"
+        visible: logueado
 
         RowLayout {
             spacing: 20
             anchors.fill: parent
 
-            BotonMenu {
+            ToolButton {
                 id: botonMenu
                 Layout.fillHeight: true
                 width: height
+                flat: true
+                contentItem: Image {
+                    source: "images/menu-2.png"
+                    sourceSize: Qt.size(parent.width, parent.height)
+                }
 
                 onClicked: {
                     if(stackView.depth > 1)
@@ -57,7 +65,7 @@ ApplicationWindow {
                     fillMode: Image.Pad
                     horizontalAlignment: Image.AlignHCenter
                     verticalAlignment: Image.AlignVCenter
-                    source: "images/menu.png"
+                    source: "images/more-1.png"
                 }
                 onClicked: menuOpciones.open()
 
@@ -74,6 +82,59 @@ ApplicationWindow {
         id: stackView
         anchors.fill: parent
 
+        Login {
+            id: loginForm
+            anchors.fill: parent
+            btnEntrar.onClicked: {
+                if(txtUsuario == "root" && txtContra == "toor")
+                {
+                    stackView.push(zonasForm)
+                    logueado = !logueado
+                }
+            }
+        }
+
+        Zonas {
+            id: zonasForm
+            anchors.fill: parent
+        }
+
+        Itinerarios {
+            id: itinerariosForm
+            anchors.fill: parent
+        }
+
+        Empleados {
+            id: empleadosForm
+            anchors.fill: parent
+        }
+
+        Habitat {
+            id: habitatForm
+            anchors.fill: parent
+        }
+
+        Guias {
+            id: guiasForm
+            anchors.fill: parent
+        }
+
+        Especies {
+            id: especiesForm
+            anchors.fill: parent
+        }
+
+        Recorridos {
+            id: recorridosForm
+            anchors.fill: parent
+        }
+
+        Blend {
+            anchors.fill: loginForm
+            source: loginForm
+            foregroundSource: zonasForm
+            mode: "substract"
+        }
     }
 
     Drawer {

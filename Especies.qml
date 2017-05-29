@@ -57,7 +57,6 @@ Item {
         ListModel {
             id: elementos
             ListElement {
-                boton: "images/delete.png"
                 nombre: "León"
                 taxonomia: "Pantera Leo"
                 descripcion: "Mamífero"
@@ -73,5 +72,9 @@ Item {
             }
         }
 
+        Button {
+            id: botonAgregar
+
+        }
     }
 }
